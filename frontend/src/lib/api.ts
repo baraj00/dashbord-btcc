@@ -9,7 +9,7 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
   const url = `${API_BASE}/api${path}`;
   const res = await fetch(url, {
     ...init,
-    next: { revalidate: 10 },
+    cache: 'no-store',
   });
   if (!res.ok) {
     const body = await res.json().catch(() => ({}));
