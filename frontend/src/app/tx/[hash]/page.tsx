@@ -4,6 +4,9 @@ import { notFound } from 'next/navigation';
 import {
   formatDateTime, formatNumber, formatBtcc, shortHash, formatBytes,
 } from '@/lib/format';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 import { CopyButton } from '@/components/ui/CopyButton';
 import { Badge } from '@/components/ui/Badge';
 import type { Transaction } from '@shared/types';

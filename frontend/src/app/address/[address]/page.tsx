@@ -7,6 +7,9 @@ import { CopyButton } from '@/components/ui/CopyButton';
 import { Badge } from '@/components/ui/Badge';
 import type { Address, PaginatedResponse, AddressTx } from '@shared/types';
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
 interface Props {
   params: { address: string };
 }
