@@ -1,0 +1,22 @@
+app = 'btcc-indexer'
+primary_region = 'cdg'
+
+[build]
+  dockerfile = 'indexer/Dockerfile'
+
+[env]
+  NODE_ENV = 'production'
+  EXPLORER_URL = 'https://explorer.bitcoin-classic.net'
+  EXPLORER_TIMEOUT = '60000'
+  EXPLORER_MAX_RETRIES = '5'
+  BATCH_SIZE = '50'
+  POLL_INTERVAL = '5000'
+
+# Worker — pas de port HTTP exposé
+[processes]
+  app = 'node dist/src/index.js'
+
+[[vm]]
+  memory = '512mb'
+  cpu_kind = 'shared'
+  cpus = 1
