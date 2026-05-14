@@ -102,9 +102,17 @@ export const translations = {
       placeholder: '搜索区块、交易ID、地址…',
     },
   },
-} as const;
+};
 
-export type Translations = typeof translations.en;
+export type Translations = {
+  nav: { dashboard: string; blocks: string; mining: string; richlist: string; analytics: string; live: string };
+  hero: { subtitle: string };
+  sections: { networkOverview: string; latestBlocks: string; viewAll: string };
+  stats: { blockHeight: string; hashrate: string; networkHashrate: string; difficulty: string; blockReward: string; nextHalving: (n: string) => string; mempoolTxs: string; avgBlockTime: string; totalSupply: string; circulating: string };
+  table: { height: string; hash: string; txs: string; size: string; age: string };
+  mempool: { title: string; comingSoon: string; description: string };
+  search: { placeholder: string };
+};
 
 interface LangContextType {
   lang: Lang;
