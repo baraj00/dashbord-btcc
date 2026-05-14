@@ -2,7 +2,7 @@
 // Browser: use relative path so Next.js rewrites proxy to backend
 const API_BASE =
   typeof window === 'undefined'
-    ? (process.env.INTERNAL_API_URL || 'http://backend:3001')
+    ? (process.env.INTERNAL_API_URL || 'https://btcc-backend.fly.dev')
     : '';
 
 async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {

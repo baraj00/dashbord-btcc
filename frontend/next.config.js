@@ -7,7 +7,7 @@ const nextConfig = {
       {
         source: '/api/:path*',
         // INTERNAL_API_URL is set at runtime in the container (not baked at build time)
-        destination: `${process.env.INTERNAL_API_URL || 'http://backend:3001'}/api/:path*`,
+        destination: `${process.env.INTERNAL_API_URL || 'https://btcc-backend.fly.dev'}/api/:path*`,
       },
     ];
   },
