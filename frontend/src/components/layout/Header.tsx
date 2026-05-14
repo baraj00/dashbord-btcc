@@ -8,7 +8,7 @@ import { SearchBar } from '@/components/ui/SearchBar';
 const navLinks = [
   { href: '/',          label: 'Dashboard' },
   { href: '/blocks',    label: 'Blocks' },
-  { href: '/mempool',   label: 'Mempool' },
+  { href: '/mining',    label: 'Mining' },
   { href: '/richlist',  label: 'Richlist' },
   { href: '/analytics', label: 'Analytics' },
 ];
