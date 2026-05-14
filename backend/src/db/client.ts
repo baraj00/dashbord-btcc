@@ -9,7 +9,7 @@ export const pool = new Pool(
         max: config.db.max,
         idleTimeoutMillis: 30_000,
         connectionTimeoutMillis: 10_000,
-        ssl: { rejectUnauthorized: false },
+        ssl: process.env.DATABASE_URL.includes('sslmode=disable') ? false : { rejectUnauthorized: false },
       }
     : {
         host: config.db.host,
