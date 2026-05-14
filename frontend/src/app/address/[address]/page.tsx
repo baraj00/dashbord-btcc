@@ -1,6 +1,5 @@
 import { api } from '@/lib/api';
 import Link from 'next/link';
-import { notFound } from 'next/navigation';
 import {
   formatBtcc, formatNumber, shortHash, timeAgo,
 } from '@/lib/format';
@@ -18,8 +17,8 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function AddressPage({ params }: Props) {
   const { address } = params;
-  let addr: Address;
-  let txs: PaginatedResponse<AddressTx>;
+  let addr: Address | null = null;
+  let txs: PaginatedResponse<AddressTx> | null = null;
 
   try {
     [addr, txs] = await Promise.all([
@@ -27,7 +26,31 @@ export default async function AddressPage({ params }: Props) {
       api.get<PaginatedResponse<AddressTx>>(`/address/${address}/txs`),
     ]);
   } catch {
-    notFound();
+    // Address not found — show empty state instead of generic 404
+  }
+
+  if (!addr) {
+    return (
+      <div className="space-y-6 animate-fade-in">
+        <nav className="text-sm text-slate-500">
+          <Link href="/" className="hover:text-btcc-400">Home</Link>
+          <span className="mx-2">/</span>
+          <span className="text-slate-300">Address</span>
+        </nav>
+        <div className="card p-8 text-center space-y-4">
+          <div className="text-4xl">🔍</div>
+          <h1 className="text-xl font-bold text-slate-100">Address Not Found</h1>
+          <p className="text-slate-400 font-mono text-sm break-all">{address}</p>
+          <p className="text-slate-500 text-sm max-w-md mx-auto">
+            This address has no recorded transactions on the BTCC blockchain yet,
+            or the indexer has not synced to the block containing it.
+          </p>
+          <p className="text-slate-600 text-xs">
+            BTCC addresses start with <span className="text-btcc-400 font-mono">cc1q…</span>
+          </p>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -76,7 +99,7 @@ export default async function AddressPage({ params }: Props) {
       <div className="card overflow-hidden">
         <div className="px-5 py-4 border-b border-dark-200">
           <h2 className="font-semibold text-slate-200">
-            Transaction History ({formatNumber(txs.total)})
+            Transaction History ({formatNumber(txs?.total ?? 0)})
           </h2>
         </div>
         <div className="overflow-x-auto">
@@ -89,7 +112,7 @@ export default async function AddressPage({ params }: Props) {
               </tr>
             </thead>
             <tbody>
-              {txs.data.map((tx) => (
+              {(txs?.data ?? []).map((tx) => (
                 <tr key={tx.txid} className="table-row">
                   <td className="px-4 py-3">
                     <Link href={`/tx/${tx.txid}`} className="hash text-xs">
