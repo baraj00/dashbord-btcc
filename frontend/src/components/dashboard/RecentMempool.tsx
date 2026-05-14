@@ -11,7 +11,7 @@ export function RecentMempool() {
         <span className="text-3xl">🔧</span>
         <p className="text-sm font-medium text-slate-400">Coming soon</p>
         <p className="text-xs text-center max-w-xs">
-          Le mempool en temps réel nécessite un nœud BTCC complet. Fonctionnalité à venir.
+          实时内存池需要完整的 BTCC 节点，敬请期待。
         </p>
       </div>
     </div>
