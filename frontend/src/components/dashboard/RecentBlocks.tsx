@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { endpoints } from '@/lib/api';
 import { timeAgo, formatNumber, formatBtcc, shortHash } from '@/lib/format';
 import { SkeletonRow } from '@/components/ui/Skeleton';
+import { useLang } from '@/lib/i18n';
 import type { PaginatedResponse, Block } from '@shared/types';
 
 export function RecentBlocks() {
@@ -12,13 +13,14 @@ export function RecentBlocks() {
     endpoints.blocks(1, 10),
     { refreshInterval: 10000 },
   );
+  const { t } = useLang();
 
   return (
     <div className="card overflow-hidden">
       <div className="flex items-center justify-between px-5 py-4 border-b border-dark-200">
-        <h2 className="font-semibold text-slate-200">Latest Blocks</h2>
+        <h2 className="font-semibold text-slate-200">{t.sections.latestBlocks}</h2>
         <Link href="/blocks" className="text-xs text-btcc-400 hover:text-btcc-300">
-          View all →
+          {t.sections.viewAll}
         </Link>
       </div>
 
@@ -26,11 +28,11 @@ export function RecentBlocks() {
         <table className="w-full text-sm">
           <thead>
             <tr className="text-xs text-slate-500 border-b border-dark-200">
-              <th className="px-4 py-2 text-left">Height</th>
-              <th className="px-4 py-2 text-left">Hash</th>
-              <th className="px-4 py-2 text-right">Txs</th>
-              <th className="px-4 py-2 text-right">Size</th>
-              <th className="px-4 py-2 text-right">Age</th>
+              <th className="px-4 py-2 text-left">{t.table.height}</th>
+              <th className="px-4 py-2 text-left">{t.table.hash}</th>
+              <th className="px-4 py-2 text-right">{t.table.txs}</th>
+              <th className="px-4 py-2 text-right">{t.table.size}</th>
+              <th className="px-4 py-2 text-right">{t.table.age}</th>
             </tr>
           </thead>
           <tbody>

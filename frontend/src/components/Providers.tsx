@@ -3,9 +3,11 @@
 import { SWRConfig } from 'swr';
 import { Toaster } from 'react-hot-toast';
 import { fetcher } from '@/lib/api';
+import { LanguageProvider } from '@/lib/i18n';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
+    <LanguageProvider>
     <SWRConfig
       value={{
         fetcher,
@@ -27,5 +29,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
         }}
       />
     </SWRConfig>
+    </LanguageProvider>
   );
 }

@@ -4,18 +4,20 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { SearchBar } from '@/components/ui/SearchBar';
-
-const navLinks = [
-  { href: '/',          label: 'Dashboard' },
-  { href: '/blocks',    label: 'Blocks' },
-  { href: '/mining',    label: 'Mining' },
-  { href: '/richlist',  label: 'Richlist' },
-  { href: '/analytics', label: 'Analytics' },
-];
+import { useLang } from '@/lib/i18n';
 
 export function Header() {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { t, lang, toggle } = useLang();
+
+  const navLinks = [
+    { href: '/',          label: t.nav.dashboard },
+    { href: '/blocks',    label: t.nav.blocks },
+    { href: '/mining',    label: t.nav.mining },
+    { href: '/richlist',  label: t.nav.richlist },
+    { href: '/analytics', label: t.nav.analytics },
+  ];
 
   return (
     <header className="sticky top-0 z-50 border-b border-dark-200 bg-dark-500/90 backdrop-blur-md">
@@ -53,10 +55,30 @@ export function Header() {
             <SearchBar />
           </div>
 
-          {/* Live indicator */}
-          <div className="hidden sm:flex items-center gap-1.5 text-xs text-slate-500">
-            <span className="live-dot" />
-            <span>Live</span>
+          {/* Right side: Live + Lang toggle */}
+          <div className="hidden sm:flex items-center gap-3">
+            <div className="flex items-center gap-1.5 text-xs text-slate-500">
+              <span className="live-dot" />
+              <span>{t.nav.live}</span>
+            </div>
+            {/* Language toggle */}
+            <button
+              onClick={toggle}
+              className="flex items-center gap-1 px-2.5 py-1 rounded-md border border-dark-200 text-xs font-medium text-slate-400 hover:text-slate-200 hover:border-btcc-500/50 transition-colors"
+              title={lang === 'en' ? 'Switch to Chinese' : '切换到英文'}
+            >
+              {lang === 'en' ? (
+                <>
+                  <span>🇨🇳</span>
+                  <span>中文</span>
+                </>
+              ) : (
+                <>
+                  <span>🇬🇧</span>
+                  <span>EN</span>
+                </>
+              )}
+            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -91,6 +113,13 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
+            {/* Mobile lang toggle */}
+            <button
+              onClick={toggle}
+              className="mt-1 mx-0 flex items-center gap-1.5 px-3 py-2 rounded-md text-sm font-medium text-slate-400 hover:text-slate-200"
+            >
+              {lang === 'en' ? '🇨🇳 中文' : '🇬🇧 English'}
+            </button>
           </nav>
         )}
       </div>
