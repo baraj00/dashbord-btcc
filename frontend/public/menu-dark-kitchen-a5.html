@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu Dark Kitchen - A5</title>
+  <style>
+    :root {
+      --bg: #0f1013;
+      --card: #17191f;
+      --line: #2a2f3b;
+      --text: #f5f7fb;
+      --muted: #b8becb;
+      --accent: #f59f00;
+    }
+
+    @page {
+      size: 210mm 148mm;
+      margin: 8mm;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Inter", "Segoe UI", Arial, sans-serif;
+      background: #eceef2;
+      color: var(--text);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .sheet {
+      width: 210mm;
+      min-height: 148mm;
+      margin: 0 auto;
+      padding: 8mm;
+      background: linear-gradient(160deg, #0f1013 0%, #131620 60%, #0d1018 100%);
+      display: grid;
+      grid-template-rows: auto 1fr;
+      gap: 5mm;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 3mm;
+    }
+
+    .title {
+      margin: 0;
+      letter-spacing: .08em;
+      font-size: 8.5mm;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 3.4mm;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 1fr;
+      gap: 3mm;
+    }
+
+    .dish {
+      background: color-mix(in srgb, var(--card), #000 8%);
+      border: 1px solid var(--line);
+      border-radius: 2.2mm;
+      padding: 2.6mm;
+      display: grid;
+      gap: 1.8mm;
+      align-content: start;
+    }
+
+    .photo {
+      border: 1px dashed #4f5666;
+      border-radius: 1.6mm;
+      min-height: 15.5mm;
+      display: grid;
+      place-items: center;
+      color: #939caf;
+      font-size: 2.6mm;
+      text-align: center;
+      letter-spacing: .02em;
+      background: rgba(255, 255, 255, .02);
+    }
+
+    .dish h2 {
+      margin: 0;
+      font-size: 4mm;
+      line-height: 1.15;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+    }
+
+    .prices {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 1mm;
+      color: #e5e9f2;
+      font-size: 2.8mm;
+    }
+
+    .prices li {
+      display: flex;
+      justify-content: space-between;
+      gap: 2mm;
+    }
+
+    .label { color: var(--muted); }
+
+    .desc {
+      margin: 0;
+      font-size: 2.6mm;
+      color: var(--muted);
+      line-height: 1.25;
+    }
+
+    .price-highlight {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    @media print {
+      body { background: #fff; }
+      .sheet { margin: 0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="sheet">
+    <header class="header">
+      <h1 class="title">Dark Kitchen</h1>
+      <p class="subtitle">Menu A5 • Impression 210mm × 148mm</p>
+    </header>
+
+    <section class="menu-grid" aria-label="Menu plats">
+      <article class="dish">
+        <div class="photo">Photo IA<br/>KAOPAD</div>
+        <h2>KAOPAD</h2>
+        <ul class="prices">
+          <li><span class="label">Poulet</span><span>€10</span></li>
+          <li><span class="label">Crevettes</span><span>€12</span></li>
+        </ul>
+        <p class="desc">Riz sauté traditionnel aux légumes et aromates.</p>
+      </article>
+
+      <article class="dish">
+        <div class="photo">Photo IA<br/>KAPAO</div>
+        <h2>KAPAO</h2>
+        <ul class="prices">
+          <li><span class="label">Boeuf</span><span>€10</span></li>
+        </ul>
+        <p class="desc">Sauté au bœuf, basilic et piment.</p>
+      </article>
+
+      <article class="dish">
+        <div class="photo">Photo IA<br/>PAD THAI</div>
+        <h2>PAD THAI</h2>
+        <ul class="prices">
+          <li><span class="label">Poulet</span><span>€12</span></li>
+          <li><span class="label">Crevettes</span><span>€14</span></li>
+        </ul>
+        <p class="desc">Nouilles sautées, sauce tamarin et cacahuètes.</p>
+      </article>
+
+      <article class="dish">
+        <div class="photo">Photo IA<br/>PANENG</div>
+        <h2>PANENG</h2>
+        <ul class="prices">
+          <li><span class="label">Poulet</span><span>€10</span></li>
+        </ul>
+        <p class="desc">Curry rouge crémeux au lait de coco.</p>
+      </article>
+
+      <article class="dish">
+        <div class="photo">Photo IA<br/>MASSAMAN</div>
+        <h2>MASSAMAN</h2>
+        <ul class="prices">
+          <li><span class="label">Poulet</span><span>€12</span></li>
+        </ul>
+        <p class="desc">Curry doux aux épices chaudes et cannelle.</p>
+      </article>
+
+      <article class="dish">
+        <div class="photo">Photo IA<br/>PAD PHAK</div>
+        <h2>PAD PHAK</h2>
+        <ul class="prices">
+          <li><span class="label">Légumes</span><span>€8</span></li>
+          <li><span class="label">Crevettes</span><span>€10</span></li>
+        </ul>
+        <p class="desc">Wok de légumes frais.</p>
+      </article>
+
+      <article class="dish">
+        <div class="photo">Photo IA<br/>SPRING ROLL</div>
+        <h2>SPRING ROLL</h2>
+        <ul class="prices">
+          <li><span class="label">Prix</span><span class="price-highlight">3 pour 5€</span></li>
+        </ul>
+        <p class="desc">Rouleaux de printemps croquants.</p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
